@@ -1,0 +1,28 @@
+apply plugin: "java"
+apply plugin: "idea"
+
+
+[compileJava, javadoc, compileTestJava]*.options*.encoding = 'UTF-8'
+
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+}
+
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+
+dependencies {
+    compile 'log4j:log4j:1.2.17'
+    // https://mvnrepository.com/artifact/io.netty/netty-all
+    compile group: 'io.netty', name: 'netty-all', version: '4.1.4.Final'
+
+
+
+    testCompile 'junit:junit:4.11'
+}
