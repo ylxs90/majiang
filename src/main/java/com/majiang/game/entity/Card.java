@@ -8,7 +8,7 @@ public class Card {
     public final CardType type;
 
     public Card(int number, CardType type) {
-        if (number < 1 && number > 9) {
+        if (type.isRequireNumber() && (number < 1 || number > 9)) {
             throw new IllegalArgumentException("number must in 1..9");
         }
         this.number = number;
@@ -17,7 +17,7 @@ public class Card {
 
     public Card(CardType type) {
         this(0, type);
-        if (type.ordinal() <= CardType.tiao.ordinal()) {
+        if (type.isRequireNumber()) {
             throw new IllegalArgumentException("wan, tiao, bing must input a number");
         }
     }
