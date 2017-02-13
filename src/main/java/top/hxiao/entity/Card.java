@@ -1,4 +1,4 @@
-package com.majiang.game.entity;
+package top.hxiao.entity;
 
 /**
  * Created by hxiao on 16/8/14.
@@ -22,10 +22,23 @@ public class Card {
         }
     }
 
+
+    public static Card build(int number, CardType type) {
+        return new Card(number, type);
+    }
+
+    public static Card build(CardType type, int number) {
+        return new Card(number, type);
+    }
+
+    public static Card build(CardType type) {
+        return new Card(type);
+    }
+
     @Override
     public String toString() {
         if (type.isRequireNumber()) {
-            return number + " " + type.toString();
+            return number + type.toString();
         }
         return type.toString();
     }

@@ -1,7 +1,7 @@
 package test;
 
-import com.majiang.net.Server;
 import org.junit.Test;
+import top.hxiao.net.server.Server;
 
 /**
  * Created by hxiao on 16/8/14.
@@ -9,7 +9,7 @@ import org.junit.Test;
 public class TestServer {
 
     @Test
-    public void testStartup() {
+    public void testStartup() throws Exception {
         Server server = Server.getInstance();
         server.startup(8080);
     }

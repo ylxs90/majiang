@@ -60,7 +60,7 @@ fabric.properties
 ### Gradle template
 .gradle
 build/
-
+.idea/
 # Ignore Gradle GUI config
 gradle-app.setting
 

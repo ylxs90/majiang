@@ -1,4 +1,4 @@
-package com.majiang.net;
+package top.hxiao.net.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
@@ -33,31 +33,29 @@ public class Server {
                 }
             }
         }
-
         return ourInstance;
     }
 
-    public void startup(int port) {
+    public void startup(int port) throws InterruptedException {
         try {
             bossGroup = new NioEventLoopGroup(1);
             workerGroup = new NioEventLoopGroup(4);
-            ServerBootstrap bootstrap = new ServerBootstrap().group(bossGroup, workerGroup).channel
-                    (NioServerSocketChannel.class).option(ChannelOption.SO_BACKLOG, 100).handler
-                    (new LoggingHandler(LogLevel.DEBUG)).childHandler(new ChannelInitializer<SocketChannel>
-                    () {
-                @Override
-                protected void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(new StringEncoder()).addLast(new StringDecoder()).addLast(new
-                            ServerHandler());
-                }
-            });
+            ServerBootstrap bootstrap = new ServerBootstrap().group(bossGroup, workerGroup)
+                    .channel(NioServerSocketChannel.class).option(ChannelOption.SO_BACKLOG, 100)
+                    .handler(new LoggingHandler(LogLevel.DEBUG)).childHandler(new ChannelInitializer<SocketChannel>() {
+                        @Override
+                        protected void initChannel(SocketChannel ch) throws Exception {
+                            ch.pipeline().addLast(new StringEncoder()).addLast(new StringDecoder()).addLast(new
+                                    ServerHandler());
+                        }
+                    });
             Channel channel = bootstrap.bind(port).sync().channel();
             channel.closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
             bossGroup.shutdownGracefully();
-            workerGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully().sync();
         }
 
 

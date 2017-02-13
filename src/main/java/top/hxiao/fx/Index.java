@@ -1,7 +1,7 @@
 /**
  * Created by hxiao on 16/8/14.
  */
-package com.majiang.fx;
+package top.hxiao.fx;
 
 
 import javafx.application.Application;

@@ -1,4 +1,4 @@
-package com.majiang.game.entity;
+package top.hxiao.entity;
 
 import java.util.Comparator;
 
