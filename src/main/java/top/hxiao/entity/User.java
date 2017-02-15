@@ -20,6 +20,7 @@ public class User {
     private Position position;
     private Channel channel;
     private Long score;
+    private int addition;
     private List<Card> cards;
 
 
